@@ -11,8 +11,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Agrotir/BukkitCompassTrack">
-    <img src="https://github.com/Agrotir/BukkitCompassTrack/raw/master/images/compass.jpg" alt="Logo">
+  <a href="https://github.com/Agrotir/CompassTrack">
+    <img src="https://github.com/Agrotir/CompassTrack/raw/master/images/compass.jpg" alt="Logo">
   </a>
 
 <h3 align="center">Compass Track</h3>
@@ -21,9 +21,9 @@
     A <a href="https://dev.bukkit.org" target="_blank">Bukkit</a> plugin for tracking players.
     <br />
     <br />
-    <a href="https://github.com/Agrotir/BukkitCompassTrack/issues">Report Bug</a>
+    <a href="https://github.com/Agrotir/CompassTrack/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Agrotir/BukkitCompassTrack/issues">Request Feature</a>
+    <a href="https://github.com/Agrotir/CompassTrack/issues">Request Feature</a>
   </p>
 </div>
 
@@ -91,7 +91,7 @@
 
 ### Installation
 
-1.  Download the latest release of this plugin [here](https://github.com/Agrotir/BukkitCompassTrack/releases).
+1.  Download the latest release of this plugin [here](https://github.com/Agrotir/CompassTrack/releases).
 2.  Run the server file, e.g. `craftbukkit-1.18.2.jar`, file with the following command:
     ```sh
     java -Xmx1024M -Xms1024M -jar craftbukkit-1.18.2.jar nogui
@@ -111,7 +111,7 @@
     eula=true
     ```
 
-4.  Drag and drop the downloaded `BukkitCompassTrack.jar` into the `plugins` folder.
+4.  Drag and drop the downloaded `CompassTrack.jar` into the `plugins` folder.
 
     ```
     .
@@ -125,7 +125,7 @@
         ├── logs/
         │   └── ...
         ├── plugins/
-        │   └── BukkitCompassTrack.jar  <---  Here
+        │   └── CompassTrack.jar  <---  Here
         ├── craftbukkit-1.18.2.jar
         ├── eula.txt
         ├── server.properties
@@ -158,7 +158,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 - [ ] Bukkit Permissions
 - [ ] Bukkit Configurations
 
-See the [open issues](https://github.com/Agrotir/BukkitCompassTrack/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/Agrotir/CompassTrack/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -195,7 +195,7 @@ Distributed under the GPLv3 License. See `LICENSE.txt` for more information.
 
 <p>Programmer Dream:</p>
 
-<img src="https://github.com/Agrotir/BukkitCompassTrack/raw/master/images/statistics.png" alt="statistics">
+<img src="https://github.com/Agrotir/CompassTrack/raw/master/images/statistics.png" alt="statistics">
 
 Also, according to GitHub’s statistics, only a small percentage of you have starred this project. So if you end up enjoying this plugin, consider giving this project a star. It's free, and you can always change your mind. Enjoy using this plugin.
 
@@ -205,13 +205,13 @@ Also, according to GitHub’s statistics, only a small percentage of you have st
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/Agrotir/BukkitCompassTrack/graphs/contributors
+[contributors-url]: https://github.com/Agrotir/CompassTrack/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/Agrotir/BukkitCompassTrack/network/members
+[forks-url]: https://github.com/Agrotir/CompassTrack/network/members
 [stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/Agrotir/BukkitCompassTrack/stargazers
+[stars-url]: https://github.com/Agrotir/CompassTrack/stargazers
 [issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/Agrotir/BukkitCompassTrack/issues
+[issues-url]: https://github.com/Agrotir/CompassTrack/issues
 [license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/Agrotir/BukkitCompassTrack/blob/master/LICENSE.txt
+[license-url]: https://github.com/Agrotir/CompassTrack/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
