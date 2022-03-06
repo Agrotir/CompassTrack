@@ -67,7 +67,6 @@ public class Utils {
     }
 
     public static void initTracking(Player tracker, Player tracked) {
-        System.out.println("Calleddd");
         if (tracker.getWorld().getEnvironment()
                 .equals(tracked.getWorld().getEnvironment())) {
 

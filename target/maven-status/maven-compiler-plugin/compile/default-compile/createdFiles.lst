@@ -1,0 +1,14 @@
+me/cheezelzz/compasstrack/UI/PlayersUI.class
+me/cheezelzz/compasstrack/Listeners/PlayerDeath.class
+me/cheezelzz/compasstrack/PlayerPosition.class
+me/cheezelzz/compasstrack/Listeners/InventoryClick.class
+me/cheezelzz/compasstrack/Listeners/PlayerJoin.class
+me/cheezelzz/compasstrack/Utils/Utils.class
+me/cheezelzz/compasstrack/Listeners/PlayerDropItem.class
+me/cheezelzz/compasstrack/Commands.class
+me/cheezelzz/compasstrack/Listeners/PlayerMove.class
+me/cheezelzz/compasstrack/Listeners/InteractEvent.class
+me/cheezelzz/compasstrack/Listeners/PlayerChangedWorld.class
+me/cheezelzz/compasstrack/PlayerMapKey.class
+me/cheezelzz/compasstrack/Listeners/PlayerLeave.class
+me/cheezelzz/compasstrack/Main.class

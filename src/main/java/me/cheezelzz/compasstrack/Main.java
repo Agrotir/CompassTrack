@@ -1,15 +1,17 @@
 package me.cheezelzz.compasstrack;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -43,20 +45,37 @@ public class Main extends JavaPlugin {
 
         playerToPlayerTrackMap = new HashMap<>();
 
-        playerToPositionMap = new HashMap<>();
+        // Gson gson = new Gson();
+
+        // try {
+        // Reader reader =
+        // Files.newBufferedReader(Paths.get(this.getDataFolder().getCanonicalPath() +
+        // "/test.json"));
+        // HashMap<?, ?> test = gson.fromJson(reader, HashMap.class);
 
         try {
-            Gson gson = new Gson();
-            Reader reader = Files.newBufferedReader(Paths.get(this.getDataFolder().getCanonicalPath() + "/test.json"));
-            HashMap<?, ?> test = gson.fromJson(reader, HashMap.class);
+            File file = new File(this.getDataFolder().getCanonicalPath() + "/playerToPositionMap.json");
 
-            test.entrySet().forEach(entry -> {
-                System.out.println(((PlayerMapKey) entry.getKey()).getPlayerName() + ", "
-                        + ((PlayerMapKey) entry.getKey()).getEnvironment() + " -> ["
-                        + ((PlayerPosition) entry.getValue()).getX().intValue() + "]["
-                        + ((PlayerPosition) entry.getValue()).getY().intValue() + "]["
-                        + ((PlayerPosition) entry.getValue()).getZ().intValue() + "]");
-            });
+            if (file.exists()) {
+                Reader reader = new FileReader(file);
+                BufferedReader br = new BufferedReader(reader);
+
+                Type type = new TypeToken<HashMap<PlayerMapKey, PlayerPosition>>() {
+                }.getType();
+                HashMap<PlayerMapKey, PlayerPosition> test = new Gson().fromJson(br.readLine(), type);
+
+                br.close();
+
+                test.entrySet().forEach(entry -> {
+                    System.out.println(entry.getKey().getPlayerName() + ", "
+                            + entry.getKey().getEnvironment() + " -> ["
+                            + entry.getValue().getX().intValue() + "]["
+                            + entry.getValue().getY().intValue() + "]["
+                            + entry.getValue().getZ().intValue() + "]");
+                });
+            } else {
+                playerToPositionMap = new HashMap<>();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,12 +83,12 @@ public class Main extends JavaPlugin {
 
     public void onDisable() {
         try {
-            Gson gson = new Gson();
-            File file = new File(this.getDataFolder().getCanonicalPath() + "/test.json");
+            File file = new File(this.getDataFolder().getCanonicalPath() + "/playerToPositionMap.json");
             file.getParentFile().mkdir();
             file.createNewFile();
+
             Writer writer = new FileWriter(file, false);
-            gson.toJson(playerToPositionMap, writer);
+            new Gson().toJson(playerToPositionMap, writer);
             writer.flush();
             writer.close();
         } catch (IOException e) {
