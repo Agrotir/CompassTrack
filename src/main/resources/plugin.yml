@@ -1,0 +1,13 @@
+name: CompassTrack
+author: cheezelzz
+version: 1.0-SNAPSHOT
+main: me.cheezelzz.compasstrack.Main
+api-version: 1.18
+
+commands:
+  track:
+    usage: /track
+    description: Gives a tracking compass
+  debug:
+    usage: /debug
+    description: Used for debugging
