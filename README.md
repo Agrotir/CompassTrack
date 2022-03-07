@@ -144,7 +144,21 @@
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+1. Obtain a tracking compass by running this command:
+
+   ```sh
+   /track
+   ```
+
+<img src="https://github.com/Agrotir/CompassTrack/raw/master/images/compass.png" alt="compass">
+
+2. Right-click to bring up the tracking menu. You have the ability to track the player's current location or the players spawn location.
+
+<img src="https://github.com/Agrotir/CompassTrack/raw/master/images/menu.png" alt="menu">
+
+3. Click on the player's head or the bed to start tracking
+
+<img src="https://github.com/Agrotir/CompassTrack/raw/master/images/compass_tracking.png" alt="compass_tracking">
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
