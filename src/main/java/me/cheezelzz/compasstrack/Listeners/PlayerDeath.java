@@ -14,8 +14,10 @@ public class PlayerDeath implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent e) {
         Utils.resetTrackingStatus(e.getEntity());
-        e.getDrops().stream().filter(o -> o.getType() == Material.COMPASS)
-                .filter(o -> o.getItemMeta().getDisplayName().contains("Tracking")).collect(Collectors.toList())
+        e.getDrops().stream()
+                .filter(item -> item.getType() == Material.COMPASS
+                        && item.getItemMeta().getDisplayName().contains("Tracking"))
+                .collect(Collectors.toList())
                 .forEach(o -> o.setAmount(0));
     }
 }

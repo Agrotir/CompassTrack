@@ -1,45 +1,34 @@
 package me.cheezelzz.compasstrack.Utils;
 
-import org.bukkit.Location;
+import java.util.Arrays;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.CompassMeta;
 
 import me.cheezelzz.compasstrack.Main;
 import me.cheezelzz.compasstrack.PlayerMapKey;
 
 public class Utils {
 
-    public static void resetTrackingStatus(Player p) {
-        Main.playerToPlayerTrackMap.keySet().removeIf(o -> o.equals(p));
-        p.setCompassTarget(p.getWorld().getSpawnLocation());
-
-        if (hasTrackingCompass(p)) {
-            p.getInventory().getItem(p.getInventory().first(Material.COMPASS))
-                    .setItemMeta(getDefaultCompass().getItemMeta());
-        }
-    }
-
     public static ItemStack getDefaultCompass() {
         ItemStack compass = new ItemStack(Material.COMPASS);
-        ItemMeta compassMeta = compass.getItemMeta();
+        CompassMeta compassMeta = (CompassMeta) compass.getItemMeta();
         compassMeta.setDisplayName("Tracking Compass");
         compass.setItemMeta(compassMeta);
 
         return compass;
     }
 
-    public static boolean hasTrackingCompass(Player p) {
+    public static void resetTrackingStatus(Player p) {
 
-        if (p.getInventory().contains(Material.COMPASS)) {
-            if (p.getInventory().getItem(p.getInventory().first(Material.COMPASS)).getItemMeta()
-                    .getDisplayName().contains("Tracking")) {
-                return true;
-            }
-        }
-
-        return false;
+        Arrays.asList(p.getInventory().getContents()).stream()
+                .filter(item -> item != null && item.getType() == Material.COMPASS
+                        && item.getItemMeta().getDisplayName().contains("Tracking"))
+                .forEach(item -> {
+                    item.setItemMeta(Utils.getDefaultCompass().getItemMeta());
+                });
     }
 
     public static boolean hasTrackingCompassEquipped(Player p) {
@@ -56,21 +45,10 @@ public class Utils {
         return false;
     }
 
-    public static void updateCompassNameNewTrack(Player tracker, String compassMessage) {
-        if (hasTrackingCompass(tracker)) {
-            ItemMeta compassMeta = getDefaultCompass().getItemMeta();
-            compassMeta.setDisplayName(compassMessage);
-
-            tracker.getInventory().getItem(tracker.getInventory().first(Material.COMPASS))
-                    .setItemMeta(compassMeta);
-        }
-    }
-
     public static void initTracking(Player tracker, Player tracked) {
         if (tracker.getWorld().getEnvironment()
                 .equals(tracked.getWorld().getEnvironment())) {
 
-            updateCompassNameNewTrack(tracker, "Tracking " + tracked.getDisplayName());
             Main.playerToPlayerTrackMap.putIfAbsent(tracker, tracked);
             updatePlayersCompassPointLocation(tracker, tracked);
 
@@ -79,7 +57,6 @@ public class Utils {
                     .containsKey(new PlayerMapKey(tracked.getDisplayName(),
                             tracker.getWorld().getEnvironment()))) {
 
-                updateCompassNameNewTrack(tracker, "Tracking " + tracked.getDisplayName());
                 Main.playerToPlayerTrackMap.putIfAbsent(tracker, tracked);
                 updatePlayersCompassPointLocation(tracker, tracked);
 
@@ -90,16 +67,20 @@ public class Utils {
     }
 
     public static void updatePlayersCompassPointLocation(Player tracker, Player tracked) {
-        tracker.setCompassTarget(new Location(
-                tracker.getWorld(),
-                Main.playerToPositionMap
-                        .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
-                        .getX(),
-                Main.playerToPositionMap
-                        .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
-                        .getY(),
-                Main.playerToPositionMap
-                        .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
-                        .getZ()));
+
+        Arrays.asList(tracker.getInventory().getContents()).stream()
+                .filter(item -> item != null && item.getType() == Material.COMPASS
+                        && item.getItemMeta().getDisplayName().contains("Tracking"))
+                .forEach(item -> {
+                    CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
+
+                    compassMeta.setDisplayName("Tracking " + tracked.getDisplayName());
+                    compassMeta.setLodestone(Main.playerToPositionMap
+                            .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
+                            .getLocation(tracker));
+                    compassMeta.setLodestoneTracked(false);
+
+                    item.setItemMeta(compassMeta);
+                });
     }
 }

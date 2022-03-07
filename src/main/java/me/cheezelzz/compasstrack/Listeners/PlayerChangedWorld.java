@@ -17,12 +17,18 @@ public class PlayerChangedWorld implements Listener {
                 PlayerMapKey playerMapKey = new PlayerMapKey(e.getPlayer().getName(),
                                 e.getPlayer().getWorld().getEnvironment());
                 PlayerPosition playerPosition = new PlayerPosition(e.getPlayer());
-                Main.playerToPositionMap.putIfAbsent(playerMapKey, playerPosition);
+                Main.playerToPositionMap.put(playerMapKey, playerPosition);
 
                 Main.playerToPlayerTrackMap.entrySet().stream()
                                 .filter(entry -> entry.getValue().getDisplayName()
                                                 .equals(e.getPlayer().getDisplayName()))
                                 .map(Map.Entry::getKey).forEach(trackingPlayer -> {
+                                        Utils.initTracking(trackingPlayer, e.getPlayer());
+                                });
+
+                Main.playerToPlayerTrackMap.keySet().stream()
+                                .filter(entry -> entry.getDisplayName().equals(e.getPlayer().getDisplayName()))
+                                .forEach(trackingPlayer -> {
                                         Utils.initTracking(trackingPlayer, e.getPlayer());
                                 });
         }

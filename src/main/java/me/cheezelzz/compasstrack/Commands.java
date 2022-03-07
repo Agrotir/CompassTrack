@@ -1,5 +1,9 @@
 package me.cheezelzz.compasstrack;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +21,10 @@ public class Commands implements Listener, CommandExecutor {
             if (sender instanceof Player) {
                 Player player = ((Player) sender);
 
-                if (!Utils.hasTrackingCompass(player)) {
+                if (Arrays.asList(player.getInventory().getContents()).stream()
+                        .filter(item -> item != null && item.getType() == Material.COMPASS
+                                && item.getItemMeta().getDisplayName().contains("Tracking"))
+                        .collect(Collectors.toList()).size() == 0) {
                     player.getInventory().addItem(Utils.getDefaultCompass());
                 }
                 return true;

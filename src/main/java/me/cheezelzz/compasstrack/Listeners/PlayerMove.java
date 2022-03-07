@@ -1,13 +1,16 @@
 package me.cheezelzz.compasstrack.Listeners;
 
+import java.util.Arrays;
 import java.util.Map;
 
-import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.meta.CompassMeta;
 
 import me.cheezelzz.compasstrack.Main;
+import me.cheezelzz.compasstrack.PlayerMapKey;
 
 public class PlayerMove implements Listener {
         // DONE
@@ -28,14 +31,30 @@ public class PlayerMove implements Listener {
                         Main.playerToPlayerTrackMap.entrySet().stream()
                                         .filter(entry -> entry.getValue().getDisplayName()
                                                         .equals(e.getPlayer().getDisplayName()))
-                                        .map(Map.Entry::getKey).forEach(trackingPlayer -> {
-                                                if (trackingPlayer.getWorld().getEnvironment()
+                                        .map(Map.Entry::getKey).forEach(tracker -> {
+                                                if (tracker.getWorld().getEnvironment()
                                                                 .equals(e.getPlayer().getWorld().getEnvironment())) {
-                                                        trackingPlayer.setCompassTarget(new Location(
-                                                                        trackingPlayer.getWorld(),
-                                                                        e.getPlayer().getLocation().getX(),
-                                                                        e.getPlayer().getLocation().getY(),
-                                                                        e.getPlayer().getLocation().getZ()));
+                                                        Arrays.asList(tracker.getInventory().getContents())
+                                                                        .stream()
+                                                                        .filter(item -> item != null && item
+                                                                                        .getType() == Material.COMPASS
+                                                                                        && item.getItemMeta()
+                                                                                                        .getDisplayName()
+                                                                                                        .contains("Tracking"))
+                                                                        .forEach(item -> {
+                                                                                CompassMeta compassMeta = (CompassMeta) item
+                                                                                                .getItemMeta();
+
+                                                                                compassMeta.setLodestone(
+                                                                                                Main.playerToPositionMap
+                                                                                                                .get(new PlayerMapKey(
+                                                                                                                                e.getPlayer().getDisplayName(),
+                                                                                                                                tracker.getWorld()
+                                                                                                                                                .getEnvironment()))
+                                                                                                                .getLocation(tracker));
+
+                                                                                item.setItemMeta(compassMeta);
+                                                                        });
                                                 }
                                         });
                 }

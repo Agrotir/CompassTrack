@@ -152,8 +152,8 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 ## Roadmap
 
+- [ ] Saving coordinates to JSON
 - [ ] Working in nether
-- [ ] Using NBT tags
 - [ ] Code Optimisations
 - [ ] Bukkit Permissions
 - [ ] Bukkit Configurations

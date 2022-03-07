@@ -1,5 +1,5 @@
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/PlayerPosition.java
-/home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/InteractEvent.java
+/home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/PlayerInteract.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/PlayerChangedWorld.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Main.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/PlayerDeath.java
@@ -10,5 +10,6 @@
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/PlayerMove.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/PlayerDropItem.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Commands.java
+/home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/InventoryClickAnvil.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Utils/Utils.java
 /home/bob/Downloads/Programming/CompassTrack/src/main/java/me/cheezelzz/compasstrack/Listeners/InventoryClick.java

@@ -1,6 +1,6 @@
 name: CompassTrack
 author: cheezelzz
-version: 1.0-SNAPSHOT
+version: 1.18.1-SNAPSHOT
 main: me.cheezelzz.compasstrack.Main
 api-version: 1.18
 
