@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import me.cheezelzz.compasstrack.Main;
 import me.cheezelzz.compasstrack.UI.PlayersUI;
 import me.cheezelzz.compasstrack.Utils.Utils;
 
@@ -19,6 +20,7 @@ public class PlayerInteract implements Listener {
                     || e.getPlayer().getInventory().getItemInOffHand().getType() == Material.COMPASS
                             && e.getPlayer().getInventory().getItemInOffHand().getItemMeta().getDisplayName()
                                     .contains("Tracking")) {
+                Main.playerToPlayerTrackMap.keySet().removeIf(o -> o.equals(e.getPlayer()));
                 Utils.resetTrackingStatus(e.getPlayer());
                 e.getPlayer().openInventory(PlayersUI.GUI(e.getPlayer()));
                 return;
