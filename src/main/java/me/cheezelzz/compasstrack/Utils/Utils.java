@@ -2,7 +2,6 @@ package me.cheezelzz.compasstrack.Utils;
 
 import java.util.Arrays;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
