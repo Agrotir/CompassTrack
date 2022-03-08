@@ -166,8 +166,9 @@
 
 ## Roadmap
 
+- [x] Working in nether
+- [?] Tracking spawnpoints
 - [ ] Saving coordinates to JSON
-- [ ] Working in nether
 - [ ] Code Optimisations
 - [ ] Bukkit Permissions
 - [ ] Bukkit Configurations

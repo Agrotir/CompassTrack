@@ -36,13 +36,11 @@ public class InventoryClick implements Listener {
                 // .split("'s ")[0];
                 // Player trackedPlayer = Bukkit.getPlayer(trackedPlayerName);
 
-                // if (trackingPlayer.getInventory().getItemInMainHand().getType() ==
-                // Material.COMPASS) {
-                // if
-                // (trackingPlayer.getInventory().getItemInMainHand().getItemMeta().getDisplayName()
-                // .contains("Tracking")) {
                 // ItemMeta compassMeta =
                 // trackingPlayer.getInventory().getItemInMainHand().getItemMeta();
+
+                // System.out.println(trackingPlayer.getBedSpawnLocation());
+
                 // compassMeta.setDisplayName("Tracking " + trackedPlayerName + "'s Respawn
                 // Point");
                 // trackingPlayer.getInventory().getItemInMainHand().setItemMeta(compassMeta);
@@ -69,9 +67,8 @@ public class InventoryClick implements Listener {
                 // Main.playerToPlayerTrackMap.remove(trackingPlayer);
                 // }
 
-                // }
-                e.setCancelled(true);
             }
+            e.setCancelled(true);
         }
     }
 }

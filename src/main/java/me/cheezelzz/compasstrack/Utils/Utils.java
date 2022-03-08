@@ -2,6 +2,7 @@ package me.cheezelzz.compasstrack.Utils;
 
 import java.util.Arrays;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -50,7 +51,7 @@ public class Utils {
                 .equals(tracked.getWorld().getEnvironment())) {
 
             Main.playerToPlayerTrackMap.putIfAbsent(tracker, tracked);
-            updatePlayersCompassPointLocation(tracker, tracked);
+            updatePlayersCompassPointPlayerLocation(tracker, tracked);
 
         } else {
             if (Main.playerToPositionMap
@@ -58,7 +59,7 @@ public class Utils {
                             tracker.getWorld().getEnvironment()))) {
 
                 Main.playerToPlayerTrackMap.putIfAbsent(tracker, tracked);
-                updatePlayersCompassPointLocation(tracker, tracked);
+                updatePlayersCompassPointPlayerLocation(tracker, tracked);
 
             } else {
                 tracker.sendMessage("Target player has not entered this world type");
@@ -66,7 +67,7 @@ public class Utils {
         }
     }
 
-    public static void updatePlayersCompassPointLocation(Player tracker, Player tracked) {
+    public static void updatePlayersCompassPointPlayerLocation(Player tracker, Player tracked) {
 
         Arrays.asList(tracker.getInventory().getContents()).stream()
                 .filter(item -> item != null && item.getType() == Material.COMPASS
@@ -75,6 +76,24 @@ public class Utils {
                     CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
 
                     compassMeta.setDisplayName("Tracking " + tracked.getDisplayName());
+                    compassMeta.setLodestone(Main.playerToPositionMap
+                            .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
+                            .getLocation(tracker));
+                    compassMeta.setLodestoneTracked(false);
+
+                    item.setItemMeta(compassMeta);
+                });
+    }
+
+    public static void updatePlayersCompassPointBedSpawnLocation(Player tracker, Player tracked) {
+
+        Arrays.asList(tracker.getInventory().getContents()).stream()
+                .filter(item -> item != null && item.getType() == Material.COMPASS
+                        && item.getItemMeta().getDisplayName().contains("Tracking"))
+                .forEach(item -> {
+                    CompassMeta compassMeta = (CompassMeta) item.getItemMeta();
+
+                    compassMeta.setDisplayName("Tracking " + tracked.getDisplayName() + "'s Respawn Point");
                     compassMeta.setLodestone(Main.playerToPositionMap
                             .get(new PlayerMapKey(tracked.getDisplayName(), tracker.getWorld().getEnvironment()))
                             .getLocation(tracker));
